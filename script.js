@@ -1,15 +1,22 @@
 const steps = [
-  { title: "1a Parte - Vamos nos conhecer", minutes: 8 },
-  { title: "Sintese do programa", minutes: 2 },
-  { title: "Elogios, regras e consequencias do grupo", minutes: 8 },
-  { title: "Metas e como alcanca-las", minutes: 10 },
+  { title: "1ª Parte - Vamos nos conhecer", minutes: 8 },
+  { title: "Síntese do programa", minutes: 2 },
+  { title: "Elogios, regras e consequências do grupo", minutes: 8 },
+  { title: "Metas e como alcançá-las", minutes: 10 },
   { title: "Fazendo o Mapa dos sonhos", minutes: 30 },
-  { title: "Preparacao para o encontro das familias", minutes: 1 },
-  { title: "Lema dos Jovens", minutes: 1 }
+  { title: "Preparação para o encontro das famílias", minutes: 1 },
+  {
+    title: "Lema dos Jovens",
+    minutes: 1,
+    note: 'Somos jovens <strong>FORTES</strong> com um <strong>GRANDE</strong> futuro. Estamos tomando boas decisões para alcançarmos nossas metas.',
+    variant: "quote"
+  }
 ];
 
+const activityPanel = document.querySelector(".activity-panel");
 const stepTitle = document.getElementById("step-title");
 const stepDuration = document.getElementById("step-duration");
+const stepNote = document.getElementById("step-note");
 const minutesEl = document.getElementById("minutes");
 const secondsEl = document.getElementById("seconds");
 const progressBar = document.getElementById("progress-bar");
@@ -56,6 +63,8 @@ function renderAgenda() {
   steps.forEach((step, index) => {
     const item = document.createElement("li");
     item.className = "agenda-item";
+    item.tabIndex = 0;
+    item.setAttribute("role", "link");
 
     if (index === currentIndex) {
       item.classList.add("current");
@@ -69,8 +78,29 @@ function renderAgenda() {
       <span class="agenda-time">${durationLabel(step.minutes)}</span>
     `;
 
+    item.addEventListener("click", () => {
+      goToStep(index);
+    });
+
+    item.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        goToStep(index);
+      }
+    });
+
     agendaList.appendChild(item);
   });
+}
+
+function goToStep(index) {
+  stopTimer();
+  currentIndex = index;
+  timeLeft = steps[currentIndex].minutes * 60;
+  startPauseBtn.textContent = "Iniciar";
+  statusMessage.textContent = `Etapa selecionada: ${steps[currentIndex].title}.`;
+  statusMessage.classList.remove("warning");
+  renderStep();
 }
 
 function renderStep() {
@@ -78,6 +108,14 @@ function renderStep() {
 
   stepTitle.textContent = currentStep.title;
   stepDuration.textContent = durationLabel(currentStep.minutes);
+  activityPanel.classList.toggle("is-quote", currentStep.variant === "quote");
+  if (currentStep.note) {
+    stepNote.innerHTML = currentStep.note;
+    stepNote.hidden = false;
+  } else {
+    stepNote.innerHTML = "";
+    stepNote.hidden = true;
+  }
   currentStepCount.textContent = `Etapa ${currentIndex + 1} de ${steps.length}`;
   totalTime.textContent = `Tempo total: ${totalMinutes} minutos`;
 
@@ -95,8 +133,8 @@ function stopTimer() {
 
 function finishProgram() {
   stopTimer();
-  statusMessage.textContent = "Programa concluido. Parabens pelo encontro!";
-  startPauseBtn.textContent = "Recomecar";
+  statusMessage.textContent = "Programa concluído. Parabéns pelo encontro!";
+  startPauseBtn.textContent = "Recomeçar";
 }
 
 function moveToNextStep(autoAdvance = false) {
@@ -110,8 +148,8 @@ function moveToNextStep(autoAdvance = false) {
   renderStep();
 
   statusMessage.textContent = autoAdvance
-    ? `Etapa concluida. Iniciando: ${steps[currentIndex].title}.`
-    : `Avancou para: ${steps[currentIndex].title}.`;
+    ? `Etapa concluída. Iniciando: ${steps[currentIndex].title}.`
+    : `Avançou para: ${steps[currentIndex].title}.`;
   statusMessage.classList.remove("warning");
 }
 
@@ -124,7 +162,7 @@ function tick() {
   }
 
   stopTimer();
-  statusMessage.textContent = "Tempo encerrado. Clique em Avancar etapa para seguir.";
+  statusMessage.textContent = "Tempo encerrado. Clique em Avançar etapa para seguir.";
   statusMessage.classList.add("warning");
 }
 
@@ -141,7 +179,7 @@ function startTimer() {
 
   isRunning = true;
   startPauseBtn.textContent = "Pausar";
-  statusMessage.textContent = `Cronometro em andamento: ${steps[currentIndex].title}.`;
+  statusMessage.textContent = `Cronômetro em andamento: ${steps[currentIndex].title}.`;
   statusMessage.classList.remove("warning");
 
   intervalId = setInterval(() => {
@@ -156,7 +194,7 @@ function resetTimer() {
   currentIndex = 0;
   timeLeft = steps[0].minutes * 60;
   startPauseBtn.textContent = "Iniciar";
-  statusMessage.textContent = "Cronometro reiniciado.";
+  statusMessage.textContent = "Cronômetro reiniciado.";
   statusMessage.classList.remove("warning");
   renderStep();
 }
@@ -170,7 +208,7 @@ startPauseBtn.addEventListener("click", () => {
 
   if (isRunning) {
     stopTimer();
-    statusMessage.textContent = "Cronometro pausado.";
+    statusMessage.textContent = "Cronômetro pausado.";
     statusMessage.classList.remove("warning");
     return;
   }
