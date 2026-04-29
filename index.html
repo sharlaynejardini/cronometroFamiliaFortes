@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronometro do Encontro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Cronometro Guiado</p>
+        <h1>Roteiro do Encontro</h1>
+        <p class="subtitle">Acompanhe o encontro com tempo visivel e troca manual entre as etapas.</p>
+      </div>
+      <div class="hero-art">
+        <img src="imagens/release-programa-famlias-fortes.png" alt="Arte do programa Familias Fortes">
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="timer-card">
+        <div class="session-meta">
+          <span id="current-step-count">Etapa 1 de 7</span>
+          <span id="total-time">Tempo total: 60 minutos</span>
+        </div>
+
+        <div class="focus-panel">
+          <div class="activity-panel">
+            <p class="panel-label">Atividade atual</p>
+            <h2 id="step-title">1a Parte - Vamos nos conhecer</h2>
+            <p id="step-duration">8 minutos</p>
+          </div>
+
+          <div class="time-panel">
+            <p class="panel-label">Tempo restante</p>
+            <div class="clock" aria-live="polite">
+              <span id="minutes">08</span>
+              <span class="separator">:</span>
+              <span id="seconds">00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-shell" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <div class="controls">
+          <button id="start-pause-btn" class="primary">Iniciar</button>
+          <button id="next-btn" class="secondary">Avancar etapa</button>
+          <button id="reset-btn" class="ghost">Reiniciar</button>
+        </div>
+
+        <p id="status-message" class="status">Pronto para comecar.</p>
+      </section>
+
+      <aside class="agenda">
+        <div class="agenda-header">
+          <h3>Etapas</h3>
+          <p>Quando o tempo acabar, avance manualmente para a proxima etapa.</p>
+        </div>
+        <ol id="agenda-list"></ol>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
