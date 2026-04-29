@@ -161,9 +161,7 @@ function tick() {
     return;
   }
 
-  stopTimer();
-  statusMessage.textContent = "Tempo encerrado. Clique em Avançar etapa para seguir.";
-  statusMessage.classList.add("warning");
+  moveToNextStep(true);
 }
 
 function startTimer() {
