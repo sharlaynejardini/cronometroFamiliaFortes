@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronômetro do Encontro 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Cronômetro Guiado</p>
+        <h1>Encontro 1</h1>
+        <p class="subtitle">Acompanhe o encontro com tempo visível, avisos sonoros e avanço automático entre as etapas.</p>
+        <div class="home-actions">
+          <a class="ghost-link" href="index.html">Voltar para a home</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="imagens/release-programa-famlias-fortes.png" alt="Arte do programa Famílias Fortes">
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="timer-card">
+        <div class="session-meta">
+          <span id="current-step-count">Etapa 1 de 7</span>
+          <span id="total-time">Tempo total: 60 minutos</span>
+        </div>
+
+        <div class="focus-panel">
+          <div class="activity-panel">
+            <p class="panel-label">Atividade atual</p>
+            <h2 id="step-title">1ª Parte - Vamos nos conhecer</h2>
+            <p id="step-duration">8 minutos</p>
+            <p id="step-note" class="step-note" hidden></p>
+          </div>
+
+          <div class="time-panel">
+            <p class="panel-label">Tempo restante</p>
+            <div class="hourglass" aria-hidden="true">
+              <span class="hourglass-cap hourglass-cap-top"></span>
+              <span class="hourglass-frame hourglass-frame-left"></span>
+              <span class="hourglass-frame hourglass-frame-right"></span>
+              <span class="hourglass-glass hourglass-glass-top"></span>
+              <span class="hourglass-glass hourglass-glass-bottom"></span>
+              <span class="hourglass-sand hourglass-sand-top"></span>
+              <span class="hourglass-sand-stream"></span>
+              <span class="hourglass-sand hourglass-sand-bottom"></span>
+              <span class="hourglass-cap hourglass-cap-bottom"></span>
+            </div>
+            <div class="clock" aria-live="polite">
+              <span id="minutes">08</span>
+              <span class="separator">:</span>
+              <span id="seconds">00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-shell" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <div class="controls">
+          <button id="start-pause-btn" class="primary">Iniciar</button>
+          <button id="next-btn" class="secondary">Avançar etapa</button>
+          <button id="reset-btn" class="ghost">Reiniciar</button>
+        </div>
+
+        <p id="status-message" class="status">Pronto para começar.</p>
+      </section>
+
+      <aside class="agenda">
+        <div class="agenda-header">
+          <h3>Etapas</h3>
+          <p>O encontro passa sozinho para a próxima etapa quando o tempo termina.</p>
+        </div>
+        <ol id="agenda-list"></ol>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

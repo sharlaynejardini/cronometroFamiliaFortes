@@ -1,4 +1,4 @@
-const steps = [
+const defaultSteps = [
   { title: "1ª Parte - Vamos nos conhecer", minutes: 8 },
   { title: "Síntese do programa", minutes: 2 },
   { title: "Elogios, regras e consequências do grupo", minutes: 8 },
@@ -12,6 +12,8 @@ const steps = [
     variant: "quote"
   }
 ];
+
+const steps = window.MEETING_CONFIG?.steps || defaultSteps;
 
 const activityPanel = document.querySelector(".activity-panel");
 const stepTitle = document.getElementById("step-title");
@@ -66,42 +68,53 @@ function ensureAudioContext() {
   return audioContext;
 }
 
-function playTone(frequency, duration, type = "sine", volume = 0.06) {
+function playTone(frequency, duration, type = "sine", volume = 0.5) {
   const context = ensureAudioContext();
   if (!context) {
     return;
   }
 
   const oscillator = context.createOscillator();
+  const oscillatorLayer = context.createOscillator();
   const gainNode = context.createGain();
   const now = context.currentTime;
 
   oscillator.type = type;
   oscillator.frequency.setValueAtTime(frequency, now);
+  oscillatorLayer.type = type;
+  oscillatorLayer.frequency.setValueAtTime(frequency * 2, now);
 
   gainNode.gain.setValueAtTime(0.0001, now);
   gainNode.gain.exponentialRampToValueAtTime(volume, now + 0.02);
   gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
   oscillator.connect(gainNode);
+  oscillatorLayer.connect(gainNode);
   gainNode.connect(context.destination);
 
   oscillator.start(now);
+  oscillatorLayer.start(now);
   oscillator.stop(now + duration + 0.03);
+  oscillatorLayer.stop(now + duration + 0.03);
 }
 
 function playHalfAlert() {
-  playTone(720, 0.22, "sine", 0.08);
+  playTone(720, 0.28, "sine", 0.72);
 }
 
 function playThreeQuarterAlert() {
-  playTone(880, 0.18, "triangle", 0.08);
-  setTimeout(() => playTone(1040, 0.22, "triangle", 0.07), 120);
+  playTone(880, 0.24, "triangle", 0.78);
+  setTimeout(() => playTone(1040, 0.28, "triangle", 0.72), 120);
 }
 
 function playCountdownBeep(secondsRemaining) {
   const urgent = secondsRemaining <= 3;
-  playTone(urgent ? 1200 : 980, urgent ? 0.16 : 0.12, "square", urgent ? 0.07 : 0.05);
+  playTone(urgent ? 1200 : 980, urgent ? 0.22 : 0.18, "square", urgent ? 0.9 : 0.78);
+}
+
+function playStepEndAlert() {
+  playTone(640, 0.4, "sine", 0.82);
+  setTimeout(() => playTone(820, 0.55, "sine", 0.78), 180);
 }
 
 function resetStepAlerts() {
@@ -256,6 +269,7 @@ function tick() {
     return;
   }
 
+  playStepEndAlert();
   moveToNextStep(true);
 }
 

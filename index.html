@@ -3,84 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cronômetro do Encontro</title>
+  <title>Famílias Fortes | Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app">
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Cronômetro Guiado</p>
-        <h1>Roteiro do Encontro</h1>
-        <p class="subtitle">Acompanhe o encontro com tempo visível e troca manual entre as etapas.</p>
-      </div>
-      <div class="hero-art">
-        <img src="imagens/release-programa-famlias-fortes.png" alt="Arte do programa Famílias Fortes">
-      </div>
-    </section>
-
-    <section class="layout">
-      <section class="timer-card">
-        <div class="session-meta">
-          <span id="current-step-count">Etapa 1 de 7</span>
-          <span id="total-time">Tempo total: 60 minutos</span>
+  <main class="app home-app">
+    <section class="home-board">
+      <section class="home-banner-panel">
+        <p class="eyebrow">Programa Famílias Fortes</p>
+        <div class="home-banner-frame">
+          <img src="imagens/banner.png" alt="Banner do programa Famílias Fortes">
         </div>
-
-        <div class="focus-panel">
-          <div class="activity-panel">
-            <p class="panel-label">Atividade atual</p>
-            <h2 id="step-title">1ª Parte - Vamos nos conhecer</h2>
-            <p id="step-duration">8 minutos</p>
-            <p id="step-note" class="step-note" hidden></p>
-          </div>
-
-          <div class="time-panel">
-            <p class="panel-label">Tempo restante</p>
-            <div class="hourglass" aria-hidden="true">
-              <span class="hourglass-cap hourglass-cap-top"></span>
-              <span class="hourglass-frame hourglass-frame-left"></span>
-              <span class="hourglass-frame hourglass-frame-right"></span>
-              <span class="hourglass-glass hourglass-glass-top"></span>
-              <span class="hourglass-glass hourglass-glass-bottom"></span>
-              <span class="hourglass-sand hourglass-sand-top"></span>
-              <span class="hourglass-sand-stream"></span>
-              <span class="hourglass-sand hourglass-sand-bottom"></span>
-              <span class="hourglass-cap hourglass-cap-bottom"></span>
-            </div>
-            <div class="clock" aria-live="polite">
-              <span id="minutes">08</span>
-              <span class="separator">:</span>
-              <span id="seconds">00</span>
-            </div>
-          </div>
+        <div class="home-banner-copy">
+          <h1>Jornada dos 7 encontros</h1>
+          <p>Fortalecer vínculos familiares, melhorar a comunicação, trabalhar limites e apoiar crianças e adolescentes na construção de boas decisões.</p>
+          <a class="primary-link" href="encontro1.html">Abrir Encontro 1</a>
         </div>
-
-        <div class="progress-shell" aria-hidden="true">
-          <div id="progress-bar" class="progress-bar"></div>
-        </div>
-
-        <div class="controls">
-          <button id="start-pause-btn" class="primary">Iniciar</button>
-          <button id="next-btn" class="secondary">Avançar etapa</button>
-          <button id="reset-btn" class="ghost">Reiniciar</button>
-        </div>
-
-        <p id="status-message" class="status">Pronto para começar.</p>
       </section>
 
-      <aside class="agenda">
-        <div class="agenda-header">
-          <h3>Etapas</h3>
-          <p>Quando o tempo acabar, avance manualmente para a próxima etapa.</p>
+      <aside class="home-meetings-panel">
+        <div class="home-meetings-header">
+          <p class="eyebrow">Encontros</p>
+          <h2>Mapa do programa</h2>
+          <p>Clique no encontro para abrir o cronômetro correspondente.</p>
         </div>
-        <ol id="agenda-list"></ol>
+
+        <div class="meeting-list">
+          <a class="meeting-row active" href="encontro1.html">
+            <span class="meeting-number">01</span>
+            <span class="meeting-text">
+              <strong>1º Encontro</strong>
+              <small>Amor e Limites • Metas e Sonhos</small>
+            </span>
+          </a>
+          <a class="meeting-row active" href="encontro2.html">
+            <span class="meeting-number">02</span>
+            <span class="meeting-text">
+              <strong>2º Encontro</strong>
+              <small>As regras da nossa casa • Admirando os Pais</small>
+            </span>
+          </a>
+          <article class="meeting-row">
+            <span class="meeting-number">03</span>
+            <span class="meeting-text">
+              <strong>3º Encontro</strong>
+              <small>Incentivar boas atitudes • Lidar com estresse</small>
+            </span>
+          </article>
+          <article class="meeting-row">
+            <span class="meeting-number">04</span>
+            <span class="meeting-text">
+              <strong>4º Encontro</strong>
+              <small>Usar consequências • Seguir regras</small>
+            </span>
+          </article>
+          <article class="meeting-row">
+            <span class="meeting-number">05</span>
+            <span class="meeting-text">
+              <strong>5º Encontro</strong>
+              <small>Construir pontes • Lidar com pressão de amigos</small>
+            </span>
+          </article>
+          <article class="meeting-row">
+            <span class="meeting-number">06</span>
+            <span class="meeting-text">
+              <strong>6º Encontro</strong>
+              <small>Proteger contra o abuso de substâncias • Pressão dos amigos</small>
+            </span>
+          </article>
+          <article class="meeting-row">
+            <span class="meeting-number">07</span>
+            <span class="meeting-text">
+              <strong>7º Encontro</strong>
+              <small>Ajudar e ser ajudado • Atingir nossas metas</small>
+            </span>
+          </article>
+        </div>
       </aside>
     </section>
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
