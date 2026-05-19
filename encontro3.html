@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronômetro do Encontro 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Cronômetro Guiado</p>
+        <h1>Encontro 3</h1>
+        <p class="subtitle">Mesmo layout e os mesmos avisos sonoros altos dos encontros anteriores, agora com o roteiro para lidar com o estresse.</p>
+        <div class="home-actions">
+          <a class="ghost-link" href="index.html">Voltar para a home</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="imagens/release-programa-famlias-fortes.png" alt="Arte do programa Famílias Fortes">
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="timer-card">
+        <div class="session-meta">
+          <span id="current-step-count">Etapa 1 de 11</span>
+          <span id="total-time">Tempo total: 71.5 minutos</span>
+        </div>
+
+        <div class="focus-panel">
+          <div class="activity-panel">
+            <p class="panel-label">Atividade atual</p>
+            <h2 id="step-title">Quando os jovens chegarem</h2>
+            <p id="step-duration">1 minuto</p>
+            <p id="step-note" class="step-note" hidden></p>
+          </div>
+
+          <div class="time-panel">
+            <p class="panel-label">Tempo restante</p>
+            <div class="hourglass" aria-hidden="true">
+              <span class="hourglass-cap hourglass-cap-top"></span>
+              <span class="hourglass-frame hourglass-frame-left"></span>
+              <span class="hourglass-frame hourglass-frame-right"></span>
+              <span class="hourglass-glass hourglass-glass-top"></span>
+              <span class="hourglass-glass hourglass-glass-bottom"></span>
+              <span class="hourglass-sand hourglass-sand-top"></span>
+              <span class="hourglass-sand-stream"></span>
+              <span class="hourglass-sand hourglass-sand-bottom"></span>
+              <span class="hourglass-cap hourglass-cap-bottom"></span>
+            </div>
+            <div class="clock" aria-live="polite">
+              <span id="minutes">01</span>
+              <span class="separator">:</span>
+              <span id="seconds">00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-shell" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <div class="controls">
+          <button id="start-pause-btn" class="primary">Iniciar</button>
+          <button id="next-btn" class="secondary">Avançar etapa</button>
+          <button id="reset-btn" class="ghost">Reiniciar</button>
+        </div>
+
+        <p id="status-message" class="status">Pronto para começar.</p>
+      </section>
+
+      <aside class="agenda">
+        <div class="agenda-header">
+          <h3>Etapas</h3>
+          <p>O encontro passa sozinho para a próxima etapa quando o tempo termina.</p>
+        </div>
+        <ol id="agenda-list"></ol>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    window.MEETING_CONFIG = {
+      steps: [
+        { title: "Quando os jovens chegarem", minutes: 1 },
+        { title: "Roda de elogios e revisão da prática em casa", minutes: 4 },
+        { title: "Entendendo o estresse", minutes: 2 },
+        { title: "Situações que podem causar estresse", minutes: 8 },
+        { title: "Como saber se você está estressado", minutes: 13 },
+        { title: "Encontrando maneiras saudáveis de lidar com o estresse", minutes: 17 },
+        { title: "Encontrando soluções que funcionam para mim", minutes: 10 },
+        {
+          title: "Atividades opcionais",
+          minutes: 14,
+          note: "Siga o líder: 4 minutos. Jogo - O que temos em comum?: 10 minutos."
+        },
+        { title: "Prática em casa", minutes: 1 },
+        { title: "Preparação para o encontro das famílias", minutes: 1 },
+        {
+          title: "Conclusão",
+          minutes: 0.5,
+          note: "Somos jovens <strong>FORTES</strong> com um <strong>GRANDE</strong> futuro. Estamos tomando boas decisões para alcançarmos nossas metas.",
+          variant: "quote"
+        }
+      ]
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
