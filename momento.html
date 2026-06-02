@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Momento | Famílias Fortes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="hero-copy">
+        <p id="moment-eyebrow" class="eyebrow">Momento</p>
+        <h1 id="moment-title">Encontro</h1>
+        <p id="moment-subtitle" class="subtitle">Este material ainda será cadastrado.</p>
+        <div class="home-actions">
+          <a class="ghost-link" href="index.html">Voltar para a home</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="imagens/release-programa-famlias-fortes.png" alt="Arte do programa Famílias Fortes">
+      </div>
+    </section>
+
+    <section class="video-card">
+      <div class="video-header">
+        <p class="eyebrow">Material</p>
+        <h2>Em breve</h2>
+        <p class="empty-message">Quando você enviar o roteiro, tempo ou vídeo deste momento, eu incluo aqui.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const meeting = params.get("encontro") || "";
+    const moment = params.get("momento") || "";
+    const labels = {
+      jovens: "Momento com os jovens",
+      responsaveis: "Momento com os responsáveis",
+      familia: "Momento família"
+    };
+
+    const momentLabel = labels[moment] || "Momento";
+    document.getElementById("moment-eyebrow").textContent = momentLabel;
+    document.getElementById("moment-title").textContent = meeting ? `Encontro ${meeting}` : "Encontro";
+    document.getElementById("moment-subtitle").textContent = `${momentLabel} ainda não foi cadastrado para este encontro.`;
+  </script>
+</body>
+</html>
